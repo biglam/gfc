@@ -1,0 +1,6 @@
+<h2>The Showdown</h2>
+<strong><%= @match.users.first.email %></strong> vs <strong><%= @match.users.last.email %></strong>
+
+<% winner = rand(2)+1 %>
+
+The winner is: <%= @match.try(:winner_id) %>
