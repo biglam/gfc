@@ -1,0 +1,12 @@
+<h1>CHALLENGE!!!</h1>
+<% if user_signed_in? %>
+  <p>You are logged in as <strong><%= current_user.email %></strong></p>
+  <p>Who do you challenge?</p>
+  
+ 
+
+
+
+  <% else %>
+  <p>You must be Logged In to issue challenges and play games</p>
+  <% end %>
