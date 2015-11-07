@@ -18,7 +18,8 @@
       <li><%= link_to('Log in', new_user_session_path) %> </li>
       <% end %></li>
       <li><%= link_to('Register', new_user_registration_path) %></li>
-      <li>League Table</li>
+      <li><%= link_to('League Table', '/') %></li>
+      <li><%= link_to('New Match', new_match_path) %></li>
     </ul>
   </nav>
   <% if user_signed_in? %>

@@ -14,6 +14,11 @@ class MatchesController < ApplicationController
   def edit
     @match = Match.find(params[:id])
   end
+
+  def play
+    @match = Match.find(params[:id])
+  end
+
   def create
     @match = Match.new(match_params)
     @match.users << User.find(@match.p1_id)
