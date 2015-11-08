@@ -14,7 +14,7 @@
 <td><%=game.id%></td>
 <td><%=User.find(game.p1_id).email%></td>
 <td><%=User.find(game.p2_id).email%></td>
-<td><% if game.moves == nil || game.game_drawn == false || game.winner==nil %>
+<td><% if game.moves == nil || (game.game_drawn == false && game.winner==nil) %>
 <%= link_to('Play', edit_game_path(game))  %>
 <% else%>
 Game Finished

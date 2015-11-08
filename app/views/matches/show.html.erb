@@ -1,6 +1,0 @@
-<h2>The Showdown</h2>
-<strong><%= @match.users.first.email %></strong> vs <strong><%= @match.users.last.email %></strong>
-
-<%= link_to('Start Match', edit_match_path(@match)) %>
-The winner is: <%= @match.try(:winner_id) %>
-
