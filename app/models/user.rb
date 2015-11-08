@@ -5,4 +5,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :matches
+
+  def add_win_to_player
+    self.points += 3
+    self.save
+  end
+
+  def add_draw_to_player
+    self.points += 1
+    self.save
+  end
+
 end

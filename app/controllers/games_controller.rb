@@ -25,8 +25,11 @@ class GamesController < ApplicationController
       winner = @game.determine_winner
       @game.winner = winner
       @game.save
+      @game.return_winner.add_win_to_player
       redirect_to(@game)
     elsif @game.game_drawn
+      User.find(@game.p1_id).add_draw_to_player
+      User.find(@game.p2_id).add_draw_to_player
       redirect_to(@game)
     else
       redirect_to(edit_game_path(@game.id))

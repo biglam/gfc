@@ -1,8 +1,7 @@
 SHOW PAGE
   <% if @game.game_won %>
     <h2>Game Won!</h2>
-    <% binding.pry;'' %>
-    <%= @game.return_winner %>
+    <%= @game.return_winner.email %>
   <% elsif @game.game_drawn %>
     <h2>Its a DRAW!!!</h2>
   <% end %>

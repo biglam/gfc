@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
 #game methods go here
-validate :move_is_in_correct_range
+# validate :move_is_in_correct_range
+# validates :move, :inclusion => 0..8
 
 
 WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
@@ -37,10 +38,7 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   def winlines
     WINNING_LINES
   end
-  #print current_board to webpage
-    # @current_board.each
-  #allow user to select next move
-  #update and refresh
+
   def game_won
     !!WINNING_LINES.detect do |winning_line|
       %w(111 222).include?(winning_line.map { |e| self.board.split(' ')[e] }.join)
@@ -56,11 +54,10 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   end
 
   def return_winner
-
     if self.winner == 1
-      User.find(self.p1_id).email
+      User.find(self.p1_id)
     else
-      User.find(self.p2_id).email
+      User.find(self.p2_id)
     end
   end
 
