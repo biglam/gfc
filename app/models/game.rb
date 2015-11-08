@@ -41,9 +41,36 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
     # @current_board.each
   #allow user to select next move
   #update and refresh
+  def game_won
+    !!WINNING_LINES.detect do |winning_line|
+      %w(111 222).include?(winning_line.map { |e| self.board.split(' ')[e] }.join)
+    end
+  end
 
+  def determine_winner
+    if self.moves.length % 2 == 0
+      2
+    else
+      1
+    end
+  end
+
+  def return_winner
+
+    if self.winner == 1
+      User.find(self.p1_id).email
+    else
+      User.find(self.p2_id).email
+    end
+  end
+
+  def game_drawn
+    return true if self.moves.length >= 9
+  end
   private
   def move_is_in_correct_range
    # errors.add(:move, "should be less than 8") if :move<=8
   end
+
+
 end

@@ -18,11 +18,23 @@ class GamesController < ApplicationController
   end
 
   def update
-
     @game = Game.find(params[:id])
     add_move
     @game.update(whitelister)
-    redirect_to(edit_game_path(@game.id))
+    if @game.game_won
+      winner = @game.determine_winner
+      @game.winner = winner
+      @game.save
+      redirect_to(@game)
+    elsif @game.game_drawn
+      redirect_to(@game)
+    else
+      redirect_to(edit_game_path(@game.id))
+    end
+  end
+
+  def show
+    @game = Game.find(params[:id])
   end
 
 private
@@ -36,7 +48,6 @@ def whitelister
     current_player = @game.check_player
     board = params['game']['board'].split
     board[move] = current_player
-
     params['game']['board'] = board.join(' ')
     if @game.moves == nil
       @game.moves = move

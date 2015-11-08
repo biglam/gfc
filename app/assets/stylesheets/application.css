@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+div.board {
+  width: 450px;
+}
+
+p.naught {
+  background-color: red;
+  height: 100%;
+  margin: 0;
+}
+
+p.cross {
+  background-color: blue;
+  height: 100%;
+  margin: 0;
+}
+
+div.boardsquare {
+  float: left;
+  width: 148px;
+  height: 148px;
+  border: 1px solid black;
+}
