@@ -2,6 +2,8 @@ class Game < ActiveRecord::Base
 #game methods go here
 # validate :move_is_in_correct_range
 # validates :move, :inclusion => 0..8
+validates :p1_id, presence: true
+validates :p2_id, presence: true
 has_and_belongs_to_many :users
 
 
