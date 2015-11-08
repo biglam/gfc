@@ -16,10 +16,12 @@
       <li><%= link_to('Log out', destroy_user_session_path, :method => :delete ) %></li>
       <% else %>
       <li><%= link_to('Log in', new_user_session_path) %> </li>
-      <% end %></li>
+      </li>
       <li><%= link_to('Register', new_user_registration_path) %></li>
+      <% end %>
       <li><%= link_to('League Table', '/') %></li>
-      <li><%= link_to('New Match', new_match_path) %></li>
+      <li><%= link_to('New Match', new_game_path) %></li>
+      <li><%= link_to('Show all matches', games_path) %></li>
     </ul>
   </nav>
   <% if user_signed_in? %>

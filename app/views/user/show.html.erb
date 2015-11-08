@@ -1,1 +1,32 @@
-show
+<h1>User Details - <%= @user.email %></h1>
+
+<table>
+  <tr>
+    <td>Email</td><td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>Sign in count</td><td><%= @user.sign_in_count %></td>
+  </tr>
+  <tr>
+    <td>Member since</td><td><%= @user.created_at %> (<%= time_ago_in_words(@user.created_at) %> ago)</td>
+  </tr>
+  <tr>
+    <td>Last sign in</td><td><%= @user.last_sign_in_at %> (<%= time_ago_in_words(@user.last_sign_in_at) %> ago)</td>
+  </tr>
+</table>
+
+<h2>Games Played</h2>
+<table>
+<tr>
+  <th>Vs</th><th>Date/Time</th><th>Won?</th>
+</tr>
+
+<% @user.games.each do |game| %>
+<tr>
+  <td><%= game.users.where.not(id: @user.id).first.email %></td>
+  <td><%= game.updated_at %></td>
+  <td><%= "won" if (game.winner==1 && game.p1_id==@user.id)||(game.winner==2 && game.p2_id==@user.id) %></td>
+</tr>
+
+<% end %>
+</table>
