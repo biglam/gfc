@@ -1,9 +1,5 @@
-<%= form_for @game do |f| %>
-  <%= f.label :p1_id %>
-  <%= f.collection_select :p1_id, User.all.order(:email),:id,:email, include_blank: false %>
-  <br>
-  <%= f.label :p2_id %>
-  <%= f.collection_select :p2_id, User.all.order(:email),:id,:email, include_blank: false %>
-  <br>
-  <%= f.submit 'Create Game' %>
+<% if user_signed_in? %>
+<%= render partial: 'selectuserslist' %>
+<% else %>
+<p>You must be signed in to issue a challenge</p>
 <% end %>

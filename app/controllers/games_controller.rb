@@ -20,7 +20,9 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    add_move
+    if check_move
+      add_move
+    end
     @game.update(whitelister)
     if @game.game_won
       winner = @game.determine_winner
@@ -51,6 +53,16 @@ def whitelister
     newgame.users << User.find(newgame.p1_id)
     newgame.users << User.find(newgame.p2_id)
   end 
+
+  def check_move
+    move = params['game']['move'].to_i
+    board = params['game']['board'].split
+    if board[move].to_i == 0
+      return true
+    else
+      return false
+    end
+  end
 
   def add_move
     move = params['game']['move'].to_i
