@@ -1,5 +1,8 @@
 class Game < ActiveRecord::Base
 #game methods go here
+validate :move_is_in_correct_range
+
+
 WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
   #check if current_board is empty and initialize if so
   def current_board
@@ -38,4 +41,9 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
     # @current_board.each
   #allow user to select next move
   #update and refresh
+
+  private
+  def move_is_in_correct_range
+   # errors.add(:move, "should be less than 8") if :move<=8
+  end
 end

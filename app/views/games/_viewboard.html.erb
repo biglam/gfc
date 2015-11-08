@@ -1,0 +1,8 @@
+<% @game.current_board.each_with_index do |square, i| %>
+<% case square.to_i when 0 %> <%= i %> 
+<% when 1 %><%= "O" %>
+<% when 2 %><%= "X" %>
+<% else %><%= "Err" %>
+<% end %>
+<% end %>
+
