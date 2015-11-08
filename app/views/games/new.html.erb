@@ -1,0 +1,9 @@
+<%= form_for @game do |f| %>
+  <%= f.label :p1_id %>
+  <%= f.collection_select :p1_id, User.all.order(:email),:id,:email, include_blank: false %>
+  <br>
+  <%= f.label :p2_id %>
+  <%= f.collection_select :p2_id, User.all.order(:email),:id,:email, include_blank: false %>
+  <br>
+  <%= f.submit 'Create Game' %>
+<% end %>

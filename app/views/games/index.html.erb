@@ -1,4 +1,13 @@
 <% @game.check_current_board %>
 <h2>Turn: <%= @game.check_player %></h2>
 
+
+
+<table><tr>
+<% @game.current_board.each do |square| %>
+  <td><%= square %></td>
+  <% end %>
+  </tr>
+</table>
+
 <% binding.pry;'' %>

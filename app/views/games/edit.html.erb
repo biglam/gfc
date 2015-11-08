@@ -1,0 +1,19 @@
+<% @game.check_current_board %>
+<h2>Turn: <%= @game.check_player %></h2>
+
+
+<%= form_for @game do |f| %>
+<%= f.hidden_field :p1_id, :value => @game.p1_id %>
+<%= f.hidden_field :p2_id, :value => @game.p2_id %>
+<%= f.hidden_field :board, :value => @game.current_board %>
+<%= f.hidden_field :move, :value => 8 %>
+<table><tr>
+<% @game.current_board.each do |square| %>
+  <td><%= square %></td>
+  <% end %>
+  </tr>
+</table>
+
+<%= f.submit 'Make Move' %>
+<% end %>
+<%# binding.pry;'' %>

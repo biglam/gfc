@@ -10,9 +10,7 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
     if self.moves == nil
       @current_board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     else
-      self.moves.each do |move|
-        # move
-      end
+      @current_board = self.board.split(' ')
     end
   end
 
@@ -21,11 +19,16 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   end
   #if moves count is odd, p1, else p2
   def check_player
-    if self.moves == nil or self.moves % 2 == 0
+    if self.moves == nil or self.moves.length % 2 == 0
       @current_player = 1
     else
       @current_player = 2
     end  
+  end
+
+  def makemovetest(sq)
+    @current_board[sq] = @current_player
+    self.board = @current_board.join
   end
 
   def winlines
