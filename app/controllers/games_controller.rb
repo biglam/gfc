@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-    @game = Game.new
+    @games = Game.all.order(updated_at: :desc)
   end
 
   def new
@@ -9,7 +9,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    Game.create(whitelister)
+    gid = Game.create(whitelister).id
+    add_users(gid)
     redirect_to(games_path)
   end
 
@@ -44,6 +45,12 @@ private
 def whitelister
   params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
   end
+
+  def add_users(id)
+    newgame = Game.find(id)
+    newgame.users << User.find(newgame.p1_id)
+    newgame.users << User.find(newgame.p2_id)
+  end 
 
   def add_move
     move = params['game']['move'].to_i

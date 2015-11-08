@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
 #game methods go here
 # validate :move_is_in_correct_range
 # validates :move, :inclusion => 0..8
+has_and_belongs_to_many :users
 
 
 WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]

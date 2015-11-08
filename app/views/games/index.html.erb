@@ -1,13 +1,27 @@
-<% @game.check_current_board %>
-<h2>Turn: <%= @game.check_player %></h2>
 
 
-
-<table><tr>
-<% @game.current_board.each do |square| %>
-  <td><%= square %></td>
-  <% end %>
+<table>
+  <tr>
+    <th>Game Number</th>
+    <th>Player 1</th>
+    <th>Player 2</th>
+    <th>Play</th>
+    <th>Winner</th>
   </tr>
+  
+<% @games.each do |game| %>
+<tr>
+<td><%=game.id%></td>
+<td><%=User.find(game.p1_id).email%></td>
+<td><%=User.find(game.p2_id).email%></td>
+<td><% if game.moves == nil || game.game_drawn == false || game.winner==nil %>
+<%= link_to('Play', edit_game_path(game))  %>
+<% else%>
+Game Finished
+<% end %></td>
+<td><%= User.find(game.p1_id).email if game.winner==1 %>
+<%= User.find(game.p2_id).email if game.winner==2 %>
+<%= "Draw" if game.moves != nil && game.game_drawn %></td>
+</tr>
+<% end %>
 </table>
-
-<% binding.pry;'' %>
