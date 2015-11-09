@@ -21,7 +21,9 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if check_move
-      add_move
+      add_move(params['game']['move'].to_i)
+    else
+      error = "Illegal Move"
     end
     @game.update(whitelister)
     if @game.game_won
@@ -35,6 +37,8 @@ class GamesController < ApplicationController
       User.find(@game.p2_id).add_draw_to_player
       redirect_to(@game)
     else
+      # computer_move
+      flash[:notice] = error
       redirect_to(edit_game_path(@game.id))
     end
   end
@@ -47,6 +51,21 @@ private
 def whitelister
   params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
   end
+
+  # def computer_move
+  #   if @game.check_player == 2 && @game.users.last.human == false
+  #     move = rand(8)
+  #     unless @game.moves.exclude? move.to_s
+  #       move=rand(8)
+  #     end
+  #     # add_move(move)
+  #     # binding.pry;''
+  #     # @game.save
+  #     return move
+
+  #   end
+
+  # end
 
   def add_users(id)
     newgame = Game.find(id)
@@ -64,8 +83,7 @@ def whitelister
     end
   end
 
-  def add_move
-    move = params['game']['move'].to_i
+  def add_move(move)
     current_space = params['game']['board'].split
     current_player = @game.check_player
     board = params['game']['board'].split

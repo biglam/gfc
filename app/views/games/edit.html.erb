@@ -1,4 +1,7 @@
 <% @game.check_current_board %>
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
 <% if @game.winner == nil %>
   <h2>Turn: <%= @game.check_player %></h2>
   <%= form_for @game do |f| %>
@@ -6,12 +9,10 @@
     <%= f.hidden_field :p2_id, :value => @game.p2_id %>
     <%= f.hidden_field :board, :value => @game.current_board %>
     <%= f.label :move %>
-    <%= f.text_field :move %>
+    <%= f.text_field :move, {:onchange => "this.form.submit()", :value=>@game.computer_turn} %>
     <%= f.submit 'Make Move' %>
   <% end %>
 <% else %>
   <h2>The winner is..... <%= @game.winner %>
-
 <% end %>
 <%= render partial: 'viewboard' %>
-<%# binding.pry;'' %>
