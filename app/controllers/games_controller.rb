@@ -52,21 +52,6 @@ def whitelister
   params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
   end
 
-  # def computer_move
-  #   if @game.check_player == 2 && @game.users.last.human == false
-  #     move = rand(8)
-  #     unless @game.moves.exclude? move.to_s
-  #       move=rand(8)
-  #     end
-  #     # add_move(move)
-  #     # binding.pry;''
-  #     # @game.save
-  #     return move
-
-  #   end
-
-  # end
-
   def add_users(id)
     newgame = Game.find(id)
     newgame.users << User.find(newgame.p1_id)

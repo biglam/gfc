@@ -10,13 +10,14 @@
   </tr>
   
 <% @games.each do |game| %>
+
 <tr>
-<td><%=game.id%></td>
-<td><%=User.find(game.p1_id).email%></td>
-<td><%=User.find(game.p2_id).email%></td>
-<td><% if game.moves == nil || (game.game_drawn == false && game.winner==nil) %>
+<td><%=link_to(game.id, game_path(game.id))%></td>
+<td><%=link_to(User.find(game.p1_id).email, user_path(game.p1_id))%></td>
+<td><%=link_to(User.find(game.p2_id).email, user_path(game.p2_id))%></td>
+<td><% if game.moves == nil || (game.game_drawn == nil && game.winner==nil) %>
 <%= link_to('Play', edit_game_path(game))  %>
-<% else%>
+<% else %>
 Game Finished
 <% end %></td>
 <td><%= User.find(game.p1_id).email if game.winner==1 %>

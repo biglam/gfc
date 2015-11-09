@@ -73,7 +73,7 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   end
 
   def computer_turn
-    if self.check_player == 2 && self.users.last.human == false
+    if (self.check_player == 2 && self.users.last.human == false) || (self.check_player == 1 && self.users.first.human == false)
       move = rand(8)
       until self.moves.exclude? move.to_s
         move=rand(8)     
