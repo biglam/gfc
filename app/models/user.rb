@@ -8,11 +8,13 @@ class User < ActiveRecord::Base
 
   def add_win_to_player
     self.points += 3
+    self.wins += 1
     self.save
   end
 
   def add_draw_to_player
     self.points += 1
+    self.draws += 1
     self.save
   end
 

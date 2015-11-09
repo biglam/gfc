@@ -66,6 +66,7 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   end
 
   def game_drawn
+    return false if self.moves == nil
     return true if self.moves.length >= 9
   end
 
