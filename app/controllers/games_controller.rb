@@ -38,6 +38,18 @@ class GamesController < ApplicationController
       redirect_to(@game)
     else
       # computer_move
+      if @game.computer_turn != nil 
+        if !(@game.game_won || @game.game_drawn)
+        add_move(@game.computer_turn.to_i)
+        @game.update(whitelister)
+        if @game.game_won
+          winner = @game.determine_winner
+          @game.winner = winner
+          @game.save
+          @game.return_winner.add_win_to_player
+        end
+      end
+      end
       flash[:notice] = error
       redirect_to(edit_game_path(@game.id))
     end
