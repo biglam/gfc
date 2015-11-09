@@ -1,10 +1,7 @@
+<% @game.current_board.each_with_index do |square, i| %>
 <div class="board">
-  <%= form_for @game do |f| %>
-  <%= f.hidden_field :p1_id, :value => @game.p1_id %>
-  <%= f.hidden_field :p2_id, :value => @game.p2_id %>
-  <%= f.hidden_field :board, :value => @game.current_board %>
-  <% @game.current_board.each_with_index do |square, i| %>
-  <div class="boardsquare" id="<%= i %>">
+
+  <div class="boardsquare" id="sq<%= i %>">
     <% case square.to_i when 0 %> <%= radio_button_tag :move, i %> 
       <% when 1 %><p class='naught'>O</p>
       <% when 2 %><p class='cross'>X</p>
@@ -12,6 +9,5 @@
     <% end %>
   </div>
   <% end %>
-  <%= f.submit %>
-  <% end %>
+
 </div>

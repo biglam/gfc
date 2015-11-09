@@ -13,8 +13,33 @@
  *= require_tree .
  *= require_self
  */
+body {
+  margin: 0;
+  font-family: verdana, arial, sans-serif;
+  background-color: pink;
+}
+
 div.board {
   width: 300px;
+}
+
+div.head {
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+div.head li {
+  display: inline;
+  font-size: 0.8em
+}
+
+div.head a {
+  color: white;
+}
+
+div.main {
+  margin-left: 20px;
 }
 
 p.naught, p.cross {
@@ -35,9 +60,12 @@ p.cross {
   background-color: blue;
 }
 
+
 div.boardsquare {
   float: left;
   width: 98px;
   height: 98px;
   border: 1px solid black;
 }
+
+
