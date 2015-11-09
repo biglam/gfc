@@ -21,7 +21,8 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if check_move
-      add_move(params['game']['move'].to_i)
+      # add_move(params['game']['move'].to_i)
+      add_move(params[:move].to_i)
     else
       error = "Illegal Move"
     end
@@ -71,8 +72,9 @@ def whitelister
   end 
 
   def check_move
-    move = params['game']['move'].to_i
-    board = params['game']['board'].split
+    # move = params['game']['move'].to_i
+     move = params[:move].to_i
+     board = params['game']['board'].split
     if board[move].to_i == 0
       return true
     else

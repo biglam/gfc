@@ -4,6 +4,7 @@ class Game < ActiveRecord::Base
 # validates :move, :inclusion => 0..8
 validates :p1_id, presence: true
 validates :p2_id, presence: true
+# validates_inclusion_of :move, :in => 0..8
 has_and_belongs_to_many :users
 
 
@@ -86,6 +87,7 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   private
   def move_is_in_correct_range
    # errors.add(:move, "should be less than 8") if :move<=8
+   binding.pry;
   end
 
 
