@@ -4,7 +4,8 @@
 <% end %>
 <strong><%=@game.users.first.email %></strong> vs <strong><%= @game.users.last.email %></strong>
 <% if @game.winner != nil %>
-<h2>The winner is..... <%= @game.winner %>
+<h2>The winner is..... <%= @game.return_winner.email %>
+<%= render partial: 'viewboard' %>
 <% else %>
 
   <h2>Turn: <%= @game.check_player %></h2>

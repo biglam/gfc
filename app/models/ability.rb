@@ -6,10 +6,13 @@ class Ability
     if user.role? :admin
       can :manage, :all
     else
-        can :read, :all
+        can [:create, :read], Game
         can :update, Game do |game|
            game.p1_id == user.id || game.p2_id == user.id
         end
+        # can [:update, :destroy] do User
+        #     binding.pry;''
+        # end
     end
     # Define abilities for the passed in user here. For example:
     #
