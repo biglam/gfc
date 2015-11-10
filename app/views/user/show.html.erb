@@ -21,6 +21,9 @@
   <li><strong>Games Drawn - </strong><%= @user.draws %></li>
   <li><strong>Total Points - </strong><%= @user.points %></li>
 </ul>
+<div class="userimage">
+<%= image_tag(@user.user_image) %>
+</div>
 <h2>Games Played</h2>
 <table>
 <tr>

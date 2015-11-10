@@ -8,12 +8,16 @@
 <table>
   <tr>
     <th>User</th>
+    <th>Wins</th>
+    <th>Draws</th>
     <th>Points</th>
   </tr>
 <% @users.order(points: :desc).each do |user| %>
 
   <tr>
     <td><%= user.email %></td>
+    <td><%= user.wins %></td>
+    <td><%= user.draws %></td>
     <td><%= user.points %></td>
   </tr>
   <% end %>
