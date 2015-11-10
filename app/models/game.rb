@@ -88,7 +88,8 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
        return move
      when 'level1'
       l1_computer_logic
-
+      when 'level2'
+      l2_computer_logic
     end
   end
 end
@@ -109,11 +110,11 @@ def move_is_in_correct_range
    else
      lastmove = self.moves[-2, 1].to_i
      # if self.moves.include? lastmove+1
-      move = lastmove+1
+     move = lastmove+1
      # binding.pry;''    
      if self.moves.include? move.to_s || (move == 9)
-        move = lastmove-1
-     end
+      move = lastmove-1
+    end
      # binding.pry;''
      if self.moves.include? move.to_s || (move == -1)
       until self.moves.exclude? move.to_s
@@ -122,7 +123,60 @@ def move_is_in_correct_range
    end
    return move
  end
-
-
 end
+def l2_computer_logic
+  @remaining_moves = [0,1,2,3,4,5,6,7,8]
+  @p1_moves = []
+  @p2_moves = []
+  self.moves.split(//).each_with_index do |move, index|
+   @remaining_moves.delete_at(move.to_i)
+   if index % 2 == 0
+     @p1_moves << move
+   else
+     @p2_moves << move
+   end
+ end
+
+
+
+  @testmoves = []
+  WINNING_LINES.each_with_index do |line, ind|
+    
+    b = board.split
+    # binding.pry;''
+    3.times do
+      if (b[line[0]] == "1") && (b[line[1]] == "1")
+        @testmoves << line[2]
+      end
+      line.rotate!
+    end
+  end
+
+  if @testmoves.length >= 1
+    moveslist = @testmoves.group_by(&:itself).values.max_by(&:size)
+    moveslist = (moveslist << @remaining_moves).flatten
+    move = moveslist[0]
+    i=0
+    until self.moves.exclude? move.to_s
+      i = (i+1)
+      move = moveslist[i]
+      break if i==moveslist.length
+    end 
+    # moveslist.each do |movetry|
+      # if self.moves.exclude? movetry.to_s
+      #   move = movetry
+      # end
+    # end
+  else
+    move=l1_computer_logic
+  end
+  return move
+end
+
+def check_for_pairs
+  !!WINNING_LINES.detect do |winning_line|
+    %w(111 222).include?(winning_line.map { |e| self.fakeboard.split(' ')[e] }.join)
+  end
+end
+
 end
