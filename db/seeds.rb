@@ -10,3 +10,4 @@ Match.delete_all
 User.create!(email: "admin@admin.example", password: "password", role: "admin", human: true)
 User.create!(email: "user@user.example", password: "password", human: true)
 User.create(email: 'random_computer@example.example', password: 'password', human: false)
+User.create!(email: 'level1_computer@example.com', password: 'password', human: false, computer_type: 'level1')

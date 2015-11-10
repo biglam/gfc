@@ -75,22 +75,54 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
   end
 
   def computer_turn
-    
+
     if (self.check_player == 2 && User.find(p2_id).human == false)# || (self.check_player == 1 && self.users.first.human == false)
-      move = rand(8)
-      if self.moves != nil
-        until self.moves.exclude? move.to_s
-         move=rand(8)     
-        end
-      end
-      return move
+      case User.find(p2_id).computer_type
+      when 'random'
+        move = rand(8)
+        if self.moves != nil
+          until self.moves.exclude? move.to_s
+           move=rand(8)     
+         end
+       end
+       return move
+     when 'level1'
+      l1_computer_logic
+
     end
-    end
-  private
-  def move_is_in_correct_range
+  end
+end
+private
+
+def move_is_in_correct_range
    # errors.add(:move, "should be less than 8") if :move<=8
    binding.pry;
-  end
+ end
+
+ def l1_computer_logic
+   if self.moves.length == 1
+     if self.moves == "4"
+       move = 0
+     else
+       move = 4
+     end
+   else
+     lastmove = self.moves[-2, 1].to_i
+     # if self.moves.include? lastmove+1
+      move = lastmove+1
+     # binding.pry;''    
+     if self.moves.include? move.to_s || (move == 9)
+        move = lastmove-1
+     end
+     # binding.pry;''
+     if self.moves.include? move.to_s || (move == -1)
+      until self.moves.exclude? move.to_s
+       move=rand(8) 
+     end
+   end
+   return move
+ end
 
 
+end
 end
