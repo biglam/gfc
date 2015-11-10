@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<strong><%=User.find(@rp.p1_id).email %></strong> vs <strong><%= User.find(@rp.p2_id).email %></strong>
+
+<% if @rp.winner_id != nil %>
+<h2>The winner is..... <%= User.find(@rp.winner_id).email %>
+
+<% end %>
+<br>
+<h1>
+<%=@rp.winning_message(@rp.p1_move, @rp.p2_move)%></h1>

@@ -1,0 +1,21 @@
+<h2>Rock Paper Scissors</h2>
+
+<table>
+  <tr>
+    <th>Game No</th>
+    <th>Player 1</th>
+    <th>Player 2</th>
+    <th>Winner</th>
+    <th>Play</th>
+  </tr>
+  <% @rps.each do |game| %>
+  <tr>
+    <td><%= game.id %></td>
+    <td><%= game.users.first.email %></td>
+    <td><%= game.users.last.email %></td>
+    <td><%= User.find(game.winner_id).email if game.winner_id != nil %></td>
+    <td><%= link_to("Play", edit_rp_path(game)) if (game.p1_move && game.p2_move)==nil %></td>
+  </tr>
+<% end %>
+
+</table>

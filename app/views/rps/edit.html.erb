@@ -1,0 +1,22 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<strong><%=User.find(@rp.p1_id).email %></strong> vs <strong><%= User.find(@rp.p2_id).email %></strong>
+
+<% if @rp.winner_id != nil %>
+<h2>The winner is..... <%= User.find(@rp.winner_id).email %>
+<% else %>
+
+  <%= form_for @rp do |f| %>
+  <%= f.hidden_field :p1_id, :value => @rp.p1_id %>
+  <%= f.hidden_field :p2_id, :value => @rp.p2_id %>
+  <%= select_tag('rp[p1_move]', options_for_select([['Rock', 1], ['Paper', 2], ['Scissors', 3]])) %>
+  <% if User.find(@rp.p2_id).human == true %>
+  <%= select_tag('rp[p2_move]', options_for_select([['Rock', 1], ['Paper', 2], ['Scissors', 3]])) %>
+  <% else %>
+  <%= f.hidden_field :p2_move, :value => (rand(1..3)) %>
+  <% end %>
+  <%= f.submit %>
+  <% end %>
+<% end %>

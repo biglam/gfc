@@ -16,7 +16,7 @@
 </table>
 <h2>Statistics</h2>
 <ul>
-  <li><strong>Games Played - </strong><%= @user.games.count %></li>
+  <li><strong>Games Played - </strong><%= (@user.games.count + @user.rp.count) %></li>
   <li><strong>Games Won - </strong><%= @user.wins %></li>
   <li><strong>Games Drawn - </strong><%= @user.draws %></li>
   <li><strong>Win Ratio - </strong><%= ((@user.wins.to_d / @user.games.count.to_d)*100).round(2) %></li>
@@ -26,6 +26,7 @@
 <%= image_tag(@user.user_image) %>
 </div>
 <h2>Games Played</h2>
+<h3>TicTacToe</h3>
 <table>
 <tr>
   <th>Vs</th><th>Date/Time</th><th>Result</th>
@@ -39,5 +40,21 @@
   <%= "drawn" if game.game_drawn %></td>
 </tr>
 <% end %>
+</table>
+
+<h3>Rock Paper Scissors</h3>
+<table>
+  <tr>
+    <th>Vs</th>
+    <th>Date/Time</th>
+    <th>Result</th>
+  </tr>
+  <% @user.rp.each do |rp| %>
+  <tr>
+    <td><%= rp.users.where.not(id: current_user.id).first.email %></td>
+    <td><%= rp.updated_at %></td>
+    <td><%= "Won" if rp.winner_id == current_user.id %></td>
+  </tr>
+  <% end %>
 </table>
 

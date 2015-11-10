@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+<%= render partial: 'games/selectuserslist' %>
+<% else %>
+<p>You must be signed in to issue a challenge</p>
+<% end %>
