@@ -173,10 +173,10 @@ def l2_computer_logic
   return move
 end
 
-def check_for_pairs
-  !!WINNING_LINES.detect do |winning_line|
-    %w(111 222).include?(winning_line.map { |e| self.fakeboard.split(' ')[e] }.join)
-  end
-end
+# def check_for_pairs
+#   !!WINNING_LINES.detect do |winning_line|
+#     %w(111 222).include?(winning_line.map { |e| self.fakeboard.split(' ')[e] }.join)
+#   end
+# end
 
 end
