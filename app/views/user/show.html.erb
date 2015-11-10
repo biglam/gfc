@@ -19,6 +19,7 @@
   <li><strong>Games Played - </strong><%= @user.games.count %></li>
   <li><strong>Games Won - </strong><%= @user.wins %></li>
   <li><strong>Games Drawn - </strong><%= @user.draws %></li>
+  <li><strong>Win Ratio - </strong><%= ((@user.wins.to_d / @user.games.count.to_d)*100).round(2) %></li>
   <li><strong>Total Points - </strong><%= @user.points %></li>
 </ul>
 <div class="userimage">
