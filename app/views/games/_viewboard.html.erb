@@ -3,8 +3,8 @@
 
   <div class="boardsquare" id="sq<%= i %>">
     <% case square.to_i when 0 %> <%= radio_button_tag :move, i %> 
-      <% when 1 %><p class='naught'>O</p>
-      <% when 2 %><p class='cross'>X</p>
+      <% when 1 %><p class='naught'><%= image_tag('o.png') %></p>
+      <% when 2 %><p class='cross'><%= image_tag('x.png') %></p>
       <% else %>Err
     <% end %>
   </div>

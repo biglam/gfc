@@ -1,9 +1,10 @@
 <% @game.check_current_board %>
+  <strong><%=@game.users.first.email %></strong> vs <strong><%= @game.users.last.email %></strong>
   <% if @game.game_won %>
     <h2>Game Won!</h2>
     <%= @game.return_winner.email %>
   <% elsif @game.game_drawn %>
     <h2>Its a DRAW!!!</h2>
   <% end %>
-
   <%= render partial: 'viewboard' %>
+  <%= link_to('Back', games_path) %>

@@ -12,13 +12,13 @@
 <% @games.each do |game| %>
 
 <tr>
-<td><%=link_to(game.id, game_path(game.id))%></td>
+<td><%=link_to("Game #{game.id}", game_path(game.id))%></td>
 <td><%=link_to(User.find(game.p1_id).email, user_path(game.p1_id))%></td>
 <td><%=link_to(User.find(game.p2_id).email, user_path(game.p2_id))%></td>
 <td><% if game.moves == nil || (game.game_drawn == nil && game.winner==nil) %>
-<%= link_to('Play', edit_game_path(game))  %>
+<%= link_to('Play', edit_game_path(game)) if can? :edit, Game  %>
 <% else %>
-Game Finished
+<strong>Game Finished</strong>
 <% end %></td>
 <td><%= User.find(game.p1_id).email if game.winner==1 %>
 <%= User.find(game.p2_id).email if game.winner==2 %>

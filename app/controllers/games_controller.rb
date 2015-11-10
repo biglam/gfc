@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
-
+  load_and_authorize_resource
+ 
   def index
     @games = Game.all.order(updated_at: :desc)
   end
@@ -9,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    gid = Game.create(whitelister).id
+    gid = Game.create(game_params).id
     add_users(gid)
     redirect_to(games_path)
   end
@@ -21,12 +22,11 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if check_move
-      # add_move(params['game']['move'].to_i)
       add_move(params[:move].to_i)
     else
       error = "Illegal Move"
     end
-    @game.update(whitelister)
+    @game.update(game_params)
     if @game.game_won
       winner = @game.determine_winner
       @game.winner = winner
@@ -42,7 +42,7 @@ class GamesController < ApplicationController
       if @game.computer_turn != nil 
         if !(@game.game_won || @game.game_drawn)
         add_move(@game.computer_turn.to_i)
-        @game.update(whitelister)
+        @game.update(game_params)
         if @game.game_won
           winner = @game.determine_winner
           @game.winner = winner
@@ -61,7 +61,7 @@ class GamesController < ApplicationController
   end
 
 private
-def whitelister
+def game_params
   params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
   end
 

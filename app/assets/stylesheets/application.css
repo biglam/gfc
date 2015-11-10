@@ -17,10 +17,14 @@ body {
   margin: 0;
   font-family: verdana, arial, sans-serif;
   background-color: pink;
+  font-size: 0.8em;
+  background-image: url(bg.gif);
 }
 
 div.board {
-  width: 300px;
+  width: 320px;
+  height: 320px;
+  background-image: url(boardbg.png)
 }
 
 div.head {
@@ -31,7 +35,7 @@ div.head {
 
 div.head li {
   display: inline;
-  font-size: 0.8em
+
 }
 
 div.head a {
@@ -53,19 +57,28 @@ p.naught, p.cross {
 }
 
 p.naught {
-  background-color: red;
+  /*background-color: rgba(255,0,0,0.25);*/
 }
 
 p.cross {
-  background-color: blue;
+  /*background-color: blue;*/
 }
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: white;
+}
+
 
 
 div.boardsquare {
   float: left;
-  width: 98px;
-  height: 98px;
-  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  /*border: 1px solid black;*/
 }
 
 
