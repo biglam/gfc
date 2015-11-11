@@ -6,5 +6,9 @@
   <% elsif @game.game_drawn %>
     <h2>Its a DRAW!!!</h2>
   <% end %>
+
   <%= render partial: 'viewboard' %>
-  <%= link_to('Back', games_path) %>
+
+  <%= link_to "Rematch!", "/games/new?p1_id=#{@game.p1_id}&p2_id=#{@game.p2_id}" %>
+
+  <%= link_to('Show All', games_path) %>

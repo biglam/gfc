@@ -11,7 +11,7 @@ class RpsController < ApplicationController
   def create
     gid = Rp.create(rp_params).id
     add_users(gid)
-    redirect_to(rps_path)
+    redirect_to(edit_rp_path(gid))
   end
 
   def edit

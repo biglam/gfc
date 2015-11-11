@@ -12,7 +12,7 @@ class GamesController < ApplicationController
   def create
     gid = Game.create(game_params).id
     add_users(gid)
-    redirect_to(games_path)
+    redirect_to(edit_game_path(gid))
   end
 
   def edit

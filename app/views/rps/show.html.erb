@@ -1,16 +1,18 @@
 <% if flash[:notice] %>
 <%= flash[:notice] %>
 <% end %>
-
 <strong><%=User.find(@rp.p1_id).email %></strong> vs <strong><%= User.find(@rp.p2_id).email %></strong>
-
 <% if @rp.winner_id != nil %>
-<h2>The winner is..... <%= User.find(@rp.winner_id).email %>
-
+<h2>The winner is..... <%= User.find(@rp.winner_id).email %></h2>
 <% end %>
 <br>
+
+<%= link_to "Rematch!", "/rps/new?p1_id=#{@rp.p1_id}&p2_id=#{@rp.p2_id}" %>
+<%= link_to "Show All", rps_path %>
+
 <h1>
 <%=@rp.winning_message(@rp.p1_move, @rp.p2_move)%></h1>
+
 <div class="rpsimage">
 <% case @rp.p1_move %>
 <% when 1 %>

@@ -4,17 +4,8 @@
 <% end %>
 <strong><%=@game.users.first.email %></strong> vs <strong><%= @game.users.last.email %></strong>
 <% if @game.winner != nil %>
-<h2>The winner is..... <%= @game.return_winner.email %>
-<%= render partial: 'viewboard' %>
+  <h2>The winner is..... <%= @game.return_winner.email %>
 <% else %>
-
   <h2>Turn: <%= @game.check_player %></h2>
-
-  <%= form_for @game do |f| %>
-  <%= f.hidden_field :p1_id, :value => @game.p1_id %>
-  <%= f.hidden_field :p2_id, :value => @game.p2_id %>
-  <%= f.hidden_field :board, :value => @game.current_board %>
-  <%= render partial: 'viewboard' %>
-  <%#= f.submit %>
-  <% end %>
 <% end %>
+<%= render partial: 'viewboard' %>
