@@ -11,3 +11,24 @@
 <br>
 <h1>
 <%=@rp.winning_message(@rp.p1_move, @rp.p2_move)%></h1>
+<div class="rpsimage">
+<% case @rp.p1_move %>
+<% when 1 %>
+<%= image_tag('rock.png', size: "200x200") %>
+<% when 2 %>
+<%= image_tag('paper.svg', size: "200x200") %>
+<% when 3 %>
+<%= image_tag('scissors.png', size: "200x200") %>
+<% end %>
+</div>
+<div class="rpsimage">
+
+<% case @rp.p2_move %>
+<% when 1 %>
+<%= image_tag('rock.png', size: "200x200") %>
+<% when 2 %>
+<%= image_tag('paper.svg', size: "200x200") %>
+<% when 3 %>
+<%= image_tag('scissors.png', size: "200x200") %>
+<% end %>
+</div>

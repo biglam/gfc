@@ -83,6 +83,10 @@ div.boardsquare {
   /*border: 1px solid black;*/
 }
 
+div.rpsimage {
+  float: left;
+}
+
 .blank_button {
     height: 100px;
     width: 100px;
