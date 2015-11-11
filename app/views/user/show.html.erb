@@ -1,5 +1,7 @@
+<div class="userimage">
+<%= image_tag(@user.user_image) %>
+</div>
 <h1>User Details - <%= @user.email %></h1>
-
 <table>
   <tr>
     <td>Email</td><td><%= @user.email %></td>
@@ -22,9 +24,7 @@
   <li><strong>Win Ratio - </strong><%= ((@user.wins.to_d / @user.games.count.to_d)*100).round(2) %></li>
   <li><strong>Total Points - </strong><%= @user.points %></li>
 </ul>
-<div class="userimage">
-<%= image_tag(@user.user_image) %>
-</div>
+
 <h2>Games Played</h2>
 <h3>TicTacToe</h3>
 <table>

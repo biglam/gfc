@@ -28,9 +28,11 @@ div.board {
 }
 
 div.head {
-  background-color: black;
+  /*background-color: black;*/
+  background: radial-gradient(at top right, darkred 10%, black 90%); 
   color: white;
   padding: 5px;
+
 }
 
 div.head li {
@@ -74,6 +76,9 @@ a:hover {
 
 div.userimage img {
   border: 5px solid black;
+  float: right;
+  margin-right: 50px;
+  box-shadow: 10px 10px 5px #000000;
 }
 
 div.boardsquare {
