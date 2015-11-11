@@ -83,4 +83,17 @@ div.boardsquare {
   /*border: 1px solid black;*/
 }
 
+.blank_button {
+    height: 100px;
+    width: 100px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    outline:none;
+}
+
+.blank_button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
 

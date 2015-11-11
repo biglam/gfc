@@ -20,7 +20,10 @@ class GamesController < ApplicationController
   end
 
   def update
+    params['move'] = params['game']['move']
     @game = Game.find(params[:id])
+
+
     if check_move
       add_move(params[:move].to_i)
     else

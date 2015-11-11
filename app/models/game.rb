@@ -185,6 +185,8 @@ def l3_computer_logic
     end
   end
 
+
+
   @testmoves = []
   WINNING_LINES.each_with_index do |line, ind|
     b = board.split
