@@ -1,3 +1,4 @@
+
 <% @game.check_current_board %>
 <% if flash[:notice] %>
 <%= flash[:notice] %>
@@ -5,7 +6,10 @@
 <strong><%=@game.users.first.email %></strong> vs <strong><%= @game.users.last.email %></strong>
 <% if @game.winner != nil %>
   <h2>The winner is..... <%= @game.return_winner.email %>
+
 <% else %>
   <h2>Turn: <%= @game.check_player %></h2>
 <% end %>
 <%= render partial: 'viewboard' %>
+<% `say "Lets play Tic Tac Toe!"` if @game.moves == nil  %>
+<% `open ~/mk.mp3 & ` if @game.moves == nil  %>
