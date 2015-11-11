@@ -1,8 +1,9 @@
 <div class="board">
   <% @game.current_board.each_with_index do |square, i| %>
-
+  <% @wp = [] %>
+  <% @wp = @game.find_winning_pieces if (@game.moves!=nil && @game.game_won) %>
     <div class="boardsquare" id="sq<%= i %>">
-
+    
       <% case square.to_i when 0 %> <%#= radio_button_tag :move, i %> 
         <%= form_for @game do |f| %>
           <%= f.hidden_field :p1_id, :value => @game.p1_id %>
@@ -11,8 +12,8 @@
           <%= f.hidden_field :move, :value => i %>
           <%= f.submit '', :class => 'blank_button' unless (@game.moves != nil && @game.game_won == true)%>
         <% end %>
-      <% when 1 %><p class='naught'><%= image_tag('o.png') %></p>
-      <% when 2 %><p class='cross'><%= image_tag('x.png') %></p>
+      <% when 1 %><div <%= "class=blink_me" if @game.winning_pieces(i)%>><p class='naught'><%= image_tag('o.png') %></p></div>
+      <% when 2 %><div <%= "class=blink_me" if @game.winning_pieces(i)%>><p class='cross'><%= image_tag('x.png') %></p></div>
       <% else %>Err  
       <% end %>
     </div>

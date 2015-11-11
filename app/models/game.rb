@@ -14,6 +14,13 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
     @current_board
   end
 
+  def winning_pieces(piece)
+    if find_winning_pieces != nil
+      true if find_winning_pieces.flatten.include? piece
+    end
+
+  end
+
   def check_current_board
     if self.moves == nil
       @current_board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -95,6 +102,25 @@ WINNING_LINES = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8],
     end
   end
 end
+
+def find_winning_pieces
+  @testmoves = []
+  if board != nil
+  WINNING_LINES.each_with_index do |line, ind|
+    b = board.split
+      if (b[line[0]] == "1") && (b[line[1]] == "1") && (b[line[2]] == "1")
+        @testmoves << line
+      end
+      if (b[line[0]] == "2") && (b[line[1]] == "2") && (b[line[2]] == "2")
+        @testmoves << line
+      end
+  end
+  return @testmoves
+  end
+
+end
+
+
 private
 
 def move_is_in_correct_range
@@ -213,5 +239,6 @@ else
 end
 return move
 end
+
 
 end

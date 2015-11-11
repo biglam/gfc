@@ -106,3 +106,10 @@ div.rpsimage {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}
