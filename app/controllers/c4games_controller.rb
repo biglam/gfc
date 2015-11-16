@@ -10,20 +10,31 @@ class C4gamesController < ApplicationController
 
   def update
     @game = C4game.find(params[:id])
-    @game.drop(params[:column].to_i, @game.turn.to_s)
-    if @game.c4board.check_for_win == nil
-    if @game.turn == 1
-      @game.turn = 2
+    if @game.check_column(params[:column])
+
+      @game.drop(params[:column].to_i, @game.turn.to_s)
+      if @game.c4board.check_for_win == nil
+        if @game.turn == 1
+          @game.turn = 2
+        else
+          @game.turn = 1
+        end
+        @game.save
+        redirect_to(edit_c4game_path(@game.id))
+      else
+        @game.winner_id = @game.c4board.check_for_win
+        if @game.winner_id == 1
+          @game.p1.add_win_to_player
+        elsif @game.winner_id == 2
+          @game.p2.add_win_to_player
+        end     
+        @game.save
+        redirect_to(c4game_path(@game.id))
+      end
     else
-      @game.turn = 1
+      flash[:notice] = "That Column is Full!"
+      redirect_to(c4game_path(@game.id))
     end
-    @game.save
-    redirect_to(edit_c4game_path(@game.id))
-  else
-    @game.winner_id = @game.c4board.check_for_win
-    @game.save
-    redirect_to(c4game_path(@game.id))
-  end
   end
 
   def new

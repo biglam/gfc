@@ -2,8 +2,8 @@ class C4board < ActiveRecord::Base
   # belongs_to :c4game
 
   def check_for_win
-    # (check_horizontal || check_vertical || check_diagonal)
-    check_diagonal
+    (check_horizontal || check_vertical || check_diagonal)
+    # check_diagonal
   end
 
   private

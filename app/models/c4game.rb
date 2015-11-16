@@ -14,4 +14,16 @@ class C4game < ActiveRecord::Base
     c4board.save
   end
 
+  def check_column(column)
+    col = []
+    6.times do |i|
+      col << c4board.send("r#{i+1}").split(//)[column.to_i]
+    end
+    if col.include? "0"
+      return true
+    else
+      return false
+    end
+  end
+
 end
