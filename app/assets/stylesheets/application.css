@@ -114,15 +114,26 @@ div.rpsimage {
   50% { opacity: 0.0; }
 }
 
-table.c4board{
+div.c4board{
   border: 1px solid black;
   border-spacing: 0;
   border-collapse: separate;
+  width: 358px
+}
+div.c4head {
+  float: left;
+  margin: 0px;
+  border: 1px solid #001d71;
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
 }
 
-td.c4cell {
+div.c4cell {
+  float: left;
   margin: 0px;
-  /*border: 2px solid #001d71;*/
+  border: 1px solid #001d71;
   height: 50px;
   width: 50px;
   padding: 0px;

@@ -1,13 +1,13 @@
-<table class="c4board">
+<div class="c4board">
   <% 7.times do |i| %>
-  <th class="c4cell">
-  <%= radio_button_tag(:column, i) %></th>
+  <div class="c4head">
+  <%= radio_button_tag(:column, i) %></div>
   <% end %>
 
   <% 6.times do |i| %>
-    <tr>
+    <div class="c4row">
       <% @game.c4board.send("r#{i+1}").split(//).each do |cell| %>
-      <td class="c4cell">
+      <div class="c4cell">
       <% if cell == "0" %>
       <%= image_tag('c4blank.png') %>
       <% elsif cell == "1" %>
@@ -15,8 +15,8 @@
       <% elsif cell == "2" %>
       <%= image_tag('c4blue.png') %>
       <% end %>
-      </td>
+      </div>
       <% end %>
-    </tr>
+    </div>
   <% end %>
-</table>
+</div>

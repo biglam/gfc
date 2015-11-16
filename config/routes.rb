@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   
   resources :games
   resources :user
-  resources :matches
   resources :rps
   resources :c4games
   # The priority is based upon order of creation: first created -> highest priority.
