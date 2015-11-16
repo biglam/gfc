@@ -1,39 +1,23 @@
 <h1>Connect Four</h1>
+
+<h2>Current Player - <%= @game.p1.email if @game.turn==1 %><%= @game.p2.email if @game.turn==2 %></h2>
 <p>Yes, I know there's gems, but I'm a masochist...</p>
 
+
+<%= form_for @game do |f| %>
 <table class="c4board">
-  <% 7.times do %>
-  <th class="c4cell">Drop</th>
+  <% 7.times do |i| %>
+  <th class="c4cell">
+  <%= radio_button_tag(:column, i) %></th>
   <% end %>
 
-  <tr>
-    <% @game.c4board.r1.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.c4board.r2.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.c4board.r3.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.c4board.r4.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.c4board.r5.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.c4board.r6.split(//).each do |cell| %>
-    <td class="c4cell"><%= cell %></td>
-    <% end %>
-  </tr>
+  <% 6.times do |i| %>
+    <tr>
+      <% @game.c4board.send("r#{i+1}").split(//).each do |cell| %>
+      <td class="c4cell"><%= cell %></td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
+<%= f.submit 'Make Move' %>
+<% end %>
