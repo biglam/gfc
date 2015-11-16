@@ -2,7 +2,7 @@ class C4board < ActiveRecord::Base
   # belongs_to :c4game
 
   def check_for_win
-    check_vertical
+    (check_horizontal || check_vertical)
   end
 
   private
@@ -15,7 +15,6 @@ class C4board < ActiveRecord::Base
         winner = 2
       end
     end
-    binding.pry;''
     return winner
   end
 
@@ -32,7 +31,12 @@ class C4board < ActiveRecord::Base
         winner = 2
       end
     end
-    binding.pry;''
     return winner
+  end
+
+  def check_diagonal
+    # binding.pry;''
+    #matrix?
+    #search from startpoint
   end
 end

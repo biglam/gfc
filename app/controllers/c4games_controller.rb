@@ -11,7 +11,7 @@ class C4gamesController < ApplicationController
   def update
     @game = C4game.find(params[:id])
     @game.drop(params[:column].to_i, @game.turn.to_s)
-    @game.c4board.check_for_win
+    if @game.c4board.check_for_win == nil
     if @game.turn == 1
       @game.turn = 2
     else
@@ -19,6 +19,33 @@ class C4gamesController < ApplicationController
     end
     @game.save
     redirect_to(edit_c4game_path(@game.id))
+  else
+    @game.winner_id = @game.c4board.check_for_win
+    @game.save
+    redirect_to(c4game_path(@game.id))
+  end
+  end
+
+  def new
+    @game = C4game.new
+
+  end
+
+  def create
+    @game = C4game.create(c4game_params)
+    @board = C4board.new
+    @board.save
+    @game.c4board = @board
+    @game.save
+    redirect_to(edit_c4game_path(@game.id))
+  end
+
+  def show
+    @game = C4game.find(params[:id])
+  end
+  private
+  def c4game_params
+    params.require(:c4game).permit(:p1_id, :p2_id)
   end
 
 end

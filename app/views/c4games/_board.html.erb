@@ -1,0 +1,14 @@
+<table class="c4board">
+  <% 7.times do |i| %>
+  <th class="c4cell">
+  <%= radio_button_tag(:column, i) %></th>
+  <% end %>
+
+  <% 6.times do |i| %>
+    <tr>
+      <% @game.c4board.send("r#{i+1}").split(//).each do |cell| %>
+      <td class="c4cell"><%= cell %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

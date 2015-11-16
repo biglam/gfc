@@ -1,0 +1,4 @@
+<h1>Connect Four</h1>
+<h2>The winner is... <strong><%= @game.winner_id==1 ? @game.p1.email : @game.p2.email %></strong></h2>
+
+<%= render partial: 'board' %>
