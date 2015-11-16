@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :games
   has_and_belongs_to_many :rp
 
+  has_many :c4games_as_p1, class_name: "C4game", foreign_key: :p1_id
+  has_many :c4games_as_p2, class_name: "C4game", foreign_key: :p2_id
+
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
   end

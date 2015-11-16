@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110172341) do
+ActiveRecord::Schema.define(version: 20151116102825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "c4boards", force: :cascade do |t|
+    t.string   "r1",         default: "0000000"
+    t.string   "r2",         default: "0000000"
+    t.string   "r3",         default: "0000000"
+    t.string   "r4",         default: "0000000"
+    t.string   "r5",         default: "0000000"
+    t.string   "r6",         default: "0000000"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "c4game_id"
+  end
+
+  create_table "c4games", force: :cascade do |t|
+    t.integer  "c4board_id"
+    t.integer  "p1_id"
+    t.integer  "p2_id"
+    t.integer  "winner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.string   "moves"

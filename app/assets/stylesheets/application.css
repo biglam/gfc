@@ -113,3 +113,13 @@ div.rpsimage {
 @keyframes blinker {  
   50% { opacity: 0.0; }
 }
+
+table.c4board{
+  border: 1px solid black;
+}
+
+td.c4cell {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+}

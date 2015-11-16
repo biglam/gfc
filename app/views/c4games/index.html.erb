@@ -1,0 +1,21 @@
+<h2>Connect Four</h2>
+
+<table>
+  <tr>
+    <th>Game No</th>
+    <th>Player 1</th>
+    <th>Player 2</th>
+    <th>Winner</th>
+    <th>Play</th>
+  </tr>
+  <% @games.each do |game| %>
+  <tr>
+    <td><%= link_to(game.id, rp_path(game.id)) %></td>
+    <td><%= game.p1.email %></td>
+    <td><%= game.p2.email %></td>
+    <td><%= User.find(game.winner_id).email if game.winner_id != nil %></td>
+    <td><%= link_to("Play", edit_c4game_path(game)) if game.winner_id == nil %></td>
+  </tr>
+<% end %>
+
+</table>

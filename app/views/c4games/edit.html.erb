@@ -1,0 +1,39 @@
+<h1>Connect Four</h1>
+<p>Yes, I know there's gems, but I'm a masochist...</p>
+
+<table class="c4board">
+  <% 7.times do %>
+  <th class="c4cell">Drop</th>
+  <% end %>
+
+  <tr>
+    <% @game.c4board.r1.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.c4board.r2.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.c4board.r3.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.c4board.r4.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.c4board.r5.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.c4board.r6.split(//).each do |cell| %>
+    <td class="c4cell"><%= cell %></td>
+    <% end %>
+  </tr>
+</table>
