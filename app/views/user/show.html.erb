@@ -58,3 +58,26 @@
   <% end %>
 </table>
 
+<h3>Connect Four</h3>
+<table>
+  <tr>
+    <th>Vs</th>
+    <th>Date/Time</th>
+    <th>Result</th>
+  </tr>
+  <% @user.c4games_as_p1.each do |game| %>
+  <tr>
+    <td><%= game.p2.email %></td>
+    <td><%= game.updated_at %></td>
+    <td><%= "Won" if game.winner_id == 1 %></td>
+  </tr>
+  <% end %>
+  <% @user.c4games_as_p2.each do |game| %>
+  <tr>
+    <td><%= game.p1.email %></td>
+    <td><%= game.updated_at %></td>
+    <td><%= "Won" if game.winner_id == 2 %></td>
+  </tr>
+  <% end %>
+</table>
+

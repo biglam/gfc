@@ -10,7 +10,7 @@
   </tr>
   <% @games.each do |game| %>
   <tr>
-    <td><%= link_to(game.id, rp_path(game.id)) %></td>
+    <td><%= link_to(game.id, c4game_path(game.id)) %></td>
     <td><%= game.p1.email %></td>
     <td><%= game.p2.email %></td>
     <td><%= User.find(game.p1_id).email if game.winner_id == 1  %><%= User.find(game.p2_id).email if game.winner_id == 2  %></td>

@@ -1,7 +1,7 @@
 <div class="c4board">
   <% 7.times do |i| %>
   <div class="c4head">
-  <%= radio_button_tag(:column, i) %></div>
+  <%= radio_button_tag(:column, i) if @game.winner_id == nil%></div>
   <% end %>
 
   <% 6.times do |i| %>
