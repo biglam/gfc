@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   load_and_authorize_resource
- 
+  
   def index
     @games = Game.all.order(updated_at: :desc)
   end
@@ -44,15 +44,15 @@ class GamesController < ApplicationController
       # computer_move
       if @game.computer_turn != nil 
         if !(@game.game_won || @game.game_drawn)
-        add_move(@game.computer_turn.to_i)
-        @game.update(game_params)
-        if @game.game_won
-          winner = @game.determine_winner
-          @game.winner = winner
-          @game.save
-          @game.return_winner.add_win_to_player
+          add_move(@game.computer_turn.to_i)
+          @game.update(game_params)
+          if @game.game_won
+            winner = @game.determine_winner
+            @game.winner = winner
+            @game.save
+            @game.return_winner.add_win_to_player
+          end
         end
-      end
       end
       flash[:notice] = error
       redirect_to(edit_game_path(@game.id))
@@ -63,9 +63,9 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-private
-def game_params
-  params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
+  private
+  def game_params
+    params.require(:game).permit(:moves, :board, :p1_id, :p2_id)
   end
 
   def add_users(id)
@@ -76,8 +76,8 @@ def game_params
 
   def check_move
     # move = params['game']['move'].to_i
-     move = params[:move].to_i
-     board = params['game']['board'].split
+    move = params[:move].to_i
+    board = params['game']['board'].split
     if board[move].to_i == 0
       return true
     else
