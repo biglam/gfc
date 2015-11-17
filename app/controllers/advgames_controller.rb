@@ -13,6 +13,10 @@ class AdvgamesController < ApplicationController
     redirect_to(edit_advgame_path(@game.id))
   end
 
+  def edit
+    @game = Advgame.find(params[:id])
+  end
+
   private
   def advgame_params
     params.require(:advgame).permit(:p1_id, :p2_id, :winner_id, :game_won, :game_drawn, :current_player, :atttmainboard_id, :advboard0_id, :advboard1_id, :advboard2_id,:advboard3_id, :advboard4_id, :advboard5_id, :advboard6_id, :advboard7_id, :advboard8_id)

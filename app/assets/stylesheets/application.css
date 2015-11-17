@@ -140,3 +140,32 @@ div.c4cell {
   padding: 0px;
   margin: 0px;
 }
+
+div.advmainboard {
+  width: 462px;
+  height: 462px;
+  background-color: black;
+  border: 2px solid black;
+}
+
+div.advgameboard {
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+  float: left;
+  border: 2px solid black;
+}
+
+div.board0 {
+  /*background-color: yellow;*/
+}
+
+div.inactiveboard {
+ opacity: 0.75;
+}
+
+div.advgamecell {
+  height: 50px;
+  width: 50px;
+  float: left;
+}

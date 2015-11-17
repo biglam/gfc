@@ -1,0 +1,14 @@
+<h1>Advanced Tic Tac Toe</h1>
+<p>They said it couldn't be done...</p>
+
+<div class="advmainboard">
+  <% 9.times do |i| %>
+    <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %>'>
+      <% @game.send("advboard#{i}").board.split(//).each do |cell| %>
+      <div class="advgamecell">
+      <%= cell %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
