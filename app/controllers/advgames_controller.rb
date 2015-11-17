@@ -21,20 +21,13 @@ class AdvgamesController < ApplicationController
     @game = Advgame.find(params[:id])
     # binding.pry;''
     #make move
-    smallboard = @game.send("advboard#{params[:advgame][:board]}")
-    smallboard_board = smallboard.board.split(//)
-    smallboard_board[params[:advgame][:move].to_i] = @game.current_player.to_s
-    smallboard.board = smallboard_board.join
-    if smallboard.moves == nil
-      smallboard.moves = params[:advgame][:move]
-    else
-      smallboard.moves += params[:advgame][:move]
-    end
-    smallboard.save
-    @game.set_active_board(params[:advgame][:move].to_i)
+    @game.make_move(params)
     #check for win/draw on single-board
+    @game.cell_results(params)
     #check for win/draw on big board
     #continue if game not finished
+
+    @game.set_active_board(params[:advgame][:move].to_i)
     change_player
     redirect_to(edit_advgame_path(@game.id))
     #show if it is
