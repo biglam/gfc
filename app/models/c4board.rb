@@ -5,7 +5,7 @@ class C4board < ActiveRecord::Base
     (check_horizontal || check_vertical || check_diagonal)
     # check_diagonal
   end
-
+  
   private
   def check_horizontal
     winner = nil
@@ -36,9 +36,7 @@ class C4board < ActiveRecord::Base
   end
 
   def check_diagonal
-
     winner = nil
-    
     @four = []
     #downright diagonals
     3.times do |x|

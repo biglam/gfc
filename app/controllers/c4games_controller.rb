@@ -16,7 +16,12 @@ class C4gamesController < ApplicationController
       if @game.c4board.check_for_win == nil
         change_turns
         if @game.turn == 2 && @game.p2.human == false
-          @game.drop(rand(7), "2")
+          compmove = rand(7)
+          until @game.c4board.r1.split(//)[compmove] == "0"
+            # binding.pry;''
+            compmove = rand(7)
+          end
+          @game.drop(compmove, "2")
           @game.turn = 1
         end
         @game.save

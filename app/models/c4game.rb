@@ -28,4 +28,7 @@ class C4game < ActiveRecord::Base
     end
   end
 
+  def computer_move
+    binding.pry;''
+  end
 end
