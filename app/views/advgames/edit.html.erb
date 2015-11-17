@@ -3,15 +3,17 @@
 
 <div class="advmainboard">
   <% 9.times do |i| %>
-  <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %>'>
+  <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %> <%= "advknot" if @game.send("advboard#{i}").winner_id == 1 %> <%= "advcross" if @game.send("advboard#{i}").winner_id == 2 %>'>
 
     <% @game.send("advboard#{i}").board.split(//).each_with_index do |cell, ind| %>
     <div class="advgamecell">
-    <% case cell.to_i when 0 %>
-      <%= form_for @game do |f| %>
-      <%= f.hidden_field :board, :value => i %>
-      <%= f.hidden_field :move, :value => ind %>
-      <%= f.submit cell, :class => 'adv_blank_button' %>
+      <% case cell.to_i when 0 %> 
+      <% if ((@game.send("advboard#{i}").winner_id == nil) || @game.send("advboard#{i}").drawn == false) && (@game.activeboard == i || @game.activeboard == 10) %>
+        <%= form_for @game do |f| %>  
+        <%= f.hidden_field :board, :value => i %>
+        <%= f.hidden_field :move, :value => ind %>
+        <%= f.submit "TTT", :class => 'adv_blank_button' %>
+        <% end %>
       <% end %>
       <% when 1 %>
       O

@@ -1,0 +1,21 @@
+<h1>Advanced Tic Tac Toe</h1>
+<p>They said it couldn't be done...</p>
+<h2>The winner is... <%= @game.p1.email if @game.winner_id == 1 %><%= @game.p2.email if @game.winner_id == 2 %></h2>
+<div class="advmainboard">
+  <% 9.times do |i| %>
+  <div class='advgameboard <%= "board#{i}" %> <%= "advknot" if @game.send("advboard#{i}").winner_id == 1 %> <%= "advcross" if @game.send("advboard#{i}").winner_id == 2 %>'>
+
+    <% @game.send("advboard#{i}").board.split(//).each_with_index do |cell, ind| %>
+    <div class="advgamecell">
+    <% case cell.to_i when 0 %>
+      .
+      <% when 1 %>
+      O
+      <% when 2 %>
+      X
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

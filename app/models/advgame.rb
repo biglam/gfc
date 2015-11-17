@@ -1,7 +1,6 @@
 class Advgame < ActiveRecord::Base
   belongs_to :p1, class_name: 'User'
   belongs_to :p2, class_name: 'User'
-  # has_many :AtttBoards
   belongs_to :atttmainboard, class_name: 'Advboard'
   belongs_to :advboard0, class_name: 'Advboard'
   belongs_to :advboard1, class_name: 'Advboard'
@@ -27,9 +26,13 @@ class Advgame < ActiveRecord::Base
     smallboard.save
   end
 
-  def set_active_board(lastmove)
-
-    if self.send("advboard#{lastmove}").drawn == false || self.send("advboard#{lastmove}").winner_id == nil
+  def set_active_board(params)
+    lastmove = params[:advgame][:move].to_i
+    lastboard = params[:advgame][:board].to_i
+    # binding.pry;''
+    if self.send("advboard#{lastboard}").winner_id != nil #if last move won a board
+      self.activeboard = 10
+    elsif self.send("advboard#{lastmove}").drawn == false || self.send("advboard#{lastmove}").winner_id == nil #if next board hasn't been won or drawn already
       self.activeboard = lastmove
     else
       self.activeboard = 10
@@ -41,9 +44,43 @@ class Advgame < ActiveRecord::Base
     cell = params[:advgame][:board]
     gameboard = self.send("advboard#{cell}")
     gameboard.winner_id = gameboard.check_for_win
-    binding.pry;''
     gameboard.drawn = gameboard.check_for_draw
-
     gameboard.save
+  end
+
+  def game_results(params)
+    cell = params[:advgame][:board].to_i
+    gameboard = self.send("advboard#{cell}")
+    #check if game has been won
+    if gameboard.winner_id != nil
+      mainboard = self.atttmainboard
+      mainboard_pieces = mainboard.board.split(//)
+      mainboard_pieces[cell] = gameboard.winner_id
+      mainboard.board = mainboard_pieces.join
+      mainboard.save
+    end
+    #sets attributes to main game
+    if (gameboard.winner_id != nil) || gameboard.drawn
+      availableboards = self.availableboards
+      availableboards.slice! cell.to_s
+      self.save
+    end
+    #check is mainboard has been won or drawn
+    if atttmainboard.check_for_win != nil
+      self.game_won = true
+      self.winner_id = atttmainboard.check_for_win
+      if self.winner_id == 1 
+        p1.add_win_to_player
+      elsif self.winner_id == 2
+        p2.add_win_to_player
+      end
+      self.save
+    end
+    if atttmainboard.check_for_draw
+      self.game_drawn = true
+      p1.add_draw_to_player
+      p2.add_draw_to_player
+      self.save
+    end
   end
 end

@@ -25,14 +25,21 @@ class AdvgamesController < ApplicationController
     #check for win/draw on single-board
     @game.cell_results(params)
     #check for win/draw on big board
-    #continue if game not finished
-
-    @game.set_active_board(params[:advgame][:move].to_i)
-    change_player
-    redirect_to(edit_advgame_path(@game.id))
-    #show if it is
+    @game.game_results(params)
+    if @game.game_won || @game.game_drawn
+      redirect_to(advgame_path(@game.id))
+    else
+      #continue if game not finished
+      @game.set_active_board(params)
+      change_player
+      #show if it is
+      redirect_to(edit_advgame_path(@game.id))
+    end
   end
 
+  def show
+    @game = Advgame.find(params[:id])
+  end
   private
   def advgame_params
     params.require(:advgame).permit(:p1_id, :p2_id, :winner_id, :game_won, :game_drawn, :current_player, :atttmainboard_id, :advboard0_id, :advboard1_id, :advboard2_id,:advboard3_id, :advboard4_id, :advboard5_id, :advboard6_id, :advboard7_id, :advboard8_id)
