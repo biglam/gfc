@@ -12,5 +12,14 @@ class Advgame < ActiveRecord::Base
   belongs_to :advboard6, class_name: 'Advboard'
   belongs_to :advboard7, class_name: 'Advboard'
   belongs_to :advboard8, class_name: 'Advboard'
+  
+  def set_active_board(lastmove)
 
+    if self.send("advboard#{lastmove}").drawn == false || self.send("advboard#{lastmove}").winner_id == nil
+      self.activeboard = lastmove
+    else
+      self.activeboard = 10
+    end
+    self.save
+  end
 end

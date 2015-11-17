@@ -3,12 +3,23 @@
 
 <div class="advmainboard">
   <% 9.times do |i| %>
-    <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %>'>
-      <% @game.send("advboard#{i}").board.split(//).each do |cell| %>
-      <div class="advgamecell">
-      <%= cell %>
-      </div>
+  <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %>'>
+
+    <% @game.send("advboard#{i}").board.split(//).each_with_index do |cell, ind| %>
+    <div class="advgamecell">
+    <% case cell.to_i when 0 %>
+      <%= form_for @game do |f| %>
+      <%= f.hidden_field :board, :value => i %>
+      <%= f.hidden_field :move, :value => ind %>
+      <%= f.submit cell, :class => 'adv_blank_button' %>
+      <% end %>
+      <% when 1 %>
+      O
+      <% when 2 %>
+      X
       <% end %>
     </div>
+    <% end %>
+  </div>
   <% end %>
 </div>

@@ -168,4 +168,23 @@ div.advgamecell {
   height: 50px;
   width: 50px;
   float: left;
+  font-size: 2em;
+  text-align: center;
+}
+.adv_blank_button {
+    height: 50px;
+    width: 50px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    outline:none;
+}
+
+.adv_blank_button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+div.advgamecell p {
+ 
 }

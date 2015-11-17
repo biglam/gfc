@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117161808) do
+ActiveRecord::Schema.define(version: 20151117171841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,10 @@ ActiveRecord::Schema.define(version: 20151117161808) do
     t.integer  "advboard6_id"
     t.integer  "advboard7_id"
     t.integer  "advboard8_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "activeboard",      default: 10
+    t.string   "availableboards",  default: "012345678"
   end
 
   create_table "attt_boards", force: :cascade do |t|
