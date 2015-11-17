@@ -11,10 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117131136) do
+ActiveRecord::Schema.define(version: 20151117154501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advboards", force: :cascade do |t|
+    t.string   "board",      default: "000000000"
+    t.integer  "winner_id"
+    t.boolean  "drawn",      default: false
+    t.string   "moves"
+    t.integer  "position"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "advgames", force: :cascade do |t|
+    t.integer  "p1_id"
+    t.integer  "p2_id"
+    t.integer  "winner_id"
+    t.boolean  "game_won",         default: false
+    t.boolean  "game_drawn",       default: false
+    t.integer  "current_player",   default: 1
+    t.integer  "atttmainboard_id"
+    t.integer  "advboard0_id"
+    t.integer  "advboard1_id"
+    t.integer  "advboard2_id"
+    t.integer  "advboard3_id"
+    t.integer  "advboard4_id"
+    t.integer  "advboard5_id"
+    t.integer  "advboard6_id"
+    t.integer  "advboard7_id"
+    t.integer  "advboard8_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
 
   create_table "attt_boards", force: :cascade do |t|
     t.string   "board",      default: "000000000"
@@ -25,7 +56,7 @@ ActiveRecord::Schema.define(version: 20151117131136) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "attt_games", force: :cascade do |t|
+  create_table "atttgames", force: :cascade do |t|
     t.integer  "p1_id"
     t.integer  "p2_id"
     t.integer  "winner_id"

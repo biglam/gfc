@@ -1,0 +1,12 @@
+<h1>Advanced Tic Tac Toe</h1>
+<p>Because you don't need a degree in physics, just a lot of spare time!</p>
+
+
+<% if user_signed_in? %>
+<p>Select your opponent</p>
+<%= render partial: 'games/selectuserslist' %>
+<%= form_for @game do |f| %>
+<% end %>
+<% else %>
+<p>You must be signed in to issue a challenge</p>
+<% end %>

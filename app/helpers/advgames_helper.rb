@@ -1,0 +1,2 @@
+module AdvgamesHelper
+end
