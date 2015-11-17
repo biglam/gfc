@@ -1,6 +1,6 @@
 class AdvgamesController < ApplicationController
   def index
-
+    @games = Advgame.all.order(updated_at: :desc)
   end
 
   def new

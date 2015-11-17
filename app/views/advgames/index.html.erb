@@ -1,1 +1,22 @@
-index file here
+<h1>Advanced TicTacToe</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Player 1</th>
+    <th>Player 2</th>
+    <th>Winner</th>
+  </tr>
+  <% @games.each do |game| %>
+  <tr>
+    <td><%= link_to(game.id, advgame_path(game.id)) %></td>
+    <td><%= link_to(game.p1.email, user_path(game.p1.id)) %></td>
+    <td><%= link_to(game.p2.email, user_path(game.p2.id)) %></td>
+    <td><% if game.winner_id == 1 %><%= game.p1.email %>
+    <% elsif game.winner_id == 2 %><%= game.p2.email %>
+    <% elsif game.game_drawn == true %>Game Drawn
+    <% else %><%= link_to("Play", edit_advgame_path(game.id)) %>
+    <% end %></td>
+  </tr>
+  <% end %>
+</table>

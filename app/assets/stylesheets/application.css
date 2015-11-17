@@ -32,12 +32,16 @@ div.head {
   background: radial-gradient(at top right, darkred 10%, black 90%); 
   color: white;
   padding: 5px;
-
 }
 
 div.head li {
-  display: inline;
+  /*display: inline;*/
+  list-style-type: none;
 
+}
+
+div.headerinfo {
+margin-top: 60px;
 }
 
 div.head a {
@@ -193,4 +197,9 @@ div.advknot {
 div.advcross {
   background-color: lightblue;
   background-image: url(xbg.png)
+}
+
+ul.menu
+{
+  float: left;
 }
