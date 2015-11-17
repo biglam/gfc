@@ -115,16 +115,17 @@ div.rpsimage {
 }
 
 div.c4board{
-  border: 1px solid black;
-  border-spacing: 0;
-  border-collapse: separate;
-  width: 358px
+  border: 5px solid #001d71;
+  height: 328px;
+  width: 358px;
+  text-align: center;
 }
 div.c4head {
   float: left;
   margin: 0px;
   border: 1px solid #001d71;
-  height: 50px;
+  border-bottom: 5px solid #001d71;
+  height: 20px;
   width: 50px;
   padding: 0px;
   margin: 0px;

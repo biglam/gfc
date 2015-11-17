@@ -22,6 +22,8 @@ class C4game < ActiveRecord::Base
     if col.include? "0"
       return true
     else
+      # c4board.available_moves.slice! column.to_s
+      # c4board.save
       return false
     end
   end

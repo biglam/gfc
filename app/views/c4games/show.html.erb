@@ -1,4 +1,9 @@
 <h1>Connect Four</h1>
+<% if @game.winner_id != nil %>
 <h2>The winner is... <strong><%= @game.winner_id==1 ? @game.p1.email : @game.p2.email %></strong></h2>
+<% end %>
 
+<% if (@game.c4board.r1.exclude? "0") && @game.winner_id != nil %>
+<h2>It's a Draw!!!</h2>
+<% end %>
 <%= render partial: 'board' %>
