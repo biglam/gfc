@@ -4,7 +4,6 @@ class C4game < ActiveRecord::Base
   belongs_to :p2, class_name: 'User'
 
   def drop(dcol, player)
-    # binding.pry;''
     col = []
     6.times do |i|
       col << c4board.send("r#{i+1}").split(//)[dcol]
@@ -22,13 +21,8 @@ class C4game < ActiveRecord::Base
     if col.include? "0"
       return true
     else
-      # c4board.available_moves.slice! column.to_s
-      # c4board.save
       return false
     end
   end
 
-  def computer_move
-    binding.pry;''
-  end
 end

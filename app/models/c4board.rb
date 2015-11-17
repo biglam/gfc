@@ -2,10 +2,9 @@ class C4board < ActiveRecord::Base
   # belongs_to :c4game
 
   def check_for_win
-    (check_horizontal || check_vertical || check_diagonal)
-    # check_diagonal
+   (check_horizontal || check_vertical || check_diagonal)
   end
-  
+
   private
   def check_horizontal
     winner = nil
@@ -46,7 +45,7 @@ class C4board < ActiveRecord::Base
         @four << send("r#{x+2}").split(//)[y+1]
         @four << send("r#{x+3}").split(//)[y+2]
         @four << send("r#{x+4}").split(//)[y+3]
-        if @four.join.include? "93xr"
+        if @four.join.include? "1111"
           winner = 1
         elsif @four.join.include? "2222"
           winner = 2

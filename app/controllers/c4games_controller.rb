@@ -11,7 +11,6 @@ class C4gamesController < ApplicationController
   def update
     @game = C4game.find(params[:id])
     if @game.check_column(params[:column])
-
       @game.drop(params[:column].to_i, @game.turn.to_s)
       if @game.c4board.check_for_win == nil
         change_turns
