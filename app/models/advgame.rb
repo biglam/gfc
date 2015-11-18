@@ -26,13 +26,11 @@ class Advgame < ActiveRecord::Base
     smallboard.save
   end
 
-  def set_active_board(params)
-    lastmove = params[:advgame][:move].to_i
-    lastboard = params[:advgame][:board].to_i
+  def set_active_board(lastmove, lastboard)
     # binding.pry;''
     if self.send("advboard#{lastboard}").winner_id != nil #if last move won a board
       self.activeboard = 10
-    elsif self.send("advboard#{lastmove}").drawn == false || self.send("advboard#{lastmove}").winner_id == nil #if next board hasn't been won or drawn already
+    elsif self.send("advboard#{lastmove}").drawn == false && self.send("advboard#{lastmove}").winner_id == nil #if next board hasn't been won or drawn already
       self.activeboard = lastmove
     else
       self.activeboard = 10
@@ -40,22 +38,21 @@ class Advgame < ActiveRecord::Base
     self.save
   end
 
-  def cell_results(params)
-    cell = params[:advgame][:board]
+  def cell_results(cell)
+    
     gameboard = self.send("advboard#{cell}")
     gameboard.winner_id = gameboard.check_for_win
     gameboard.drawn = gameboard.check_for_draw
     gameboard.save
   end
 
-  def game_results(params)
-    cell = params[:advgame][:board].to_i
-    gameboard = self.send("advboard#{cell}")
+  def game_results(cell)
+        gameboard = self.send("advboard#{cell}")
     #check if game has been won
     if gameboard.winner_id != nil
       mainboard = self.atttmainboard
       mainboard_pieces = mainboard.board.split(//)
-      mainboard_pieces[cell] = gameboard.winner_id
+      mainboard_pieces[cell.to_i] = gameboard.winner_id
       mainboard.board = mainboard_pieces.join
       mainboard.save
     end

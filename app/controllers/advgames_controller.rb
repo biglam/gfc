@@ -23,15 +23,19 @@ class AdvgamesController < ApplicationController
     #make move
     @game.make_move(params)
     #check and set win/draw on single-board
-    @game.cell_results(params)
+    @game.cell_results(params[:advgame][:board].to_i)
     #check and set win/draw on main board
-    @game.game_results(params)
+    @game.game_results(params[:advgame][:board].to_i)
     if @game.game_won || @game.game_drawn #if game is finished
       redirect_to(advgame_path(@game.id))
     else
       #continue if game not finished
-      @game.set_active_board(params)
+      @game.set_active_board(params[:advgame][:move].to_i, params[:advgame][:board].to_i)
       change_player
+      if @game.current_player == 2 && @game.p2.human == false
+        computer_move
+      end
+
       redirect_to(edit_advgame_path(@game.id))
     end
   end
@@ -66,5 +70,28 @@ class AdvgamesController < ApplicationController
     @game.save
   end
 
+  def computer_move
+    # binding.pry;''
+    if @game.activeboard == 10 #if all boards are active
+      gameboard = @game.availableboards.split(//).sample
+    else
+      gameboard = @game.activeboard
+    end
+    boardpieces = @game.send("advboard#{gameboard}").board
+    indpieces = boardpieces.split(//)
+    position = rand(8)
+    until indpieces[position] == "0"
+      position = rand(8)
+    end
+    indpieces[position] = "2"
+    @game.send("advboard#{gameboard}").board = indpieces.join
+    
+    @game.cell_results(gameboard)
+    @game.game_results(gameboard)
+    # binding.pry;''
+    @game.set_active_board(position, gameboard)
+    @game.current_player = 1
+    @game.save
+  end
 
 end
