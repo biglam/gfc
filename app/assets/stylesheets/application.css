@@ -40,6 +40,11 @@ div.head li {
 
 }
 
+div.navbar {
+  /*background-color: red;*/
+  height: 30px;
+}
+
 div.headerinfo {
 margin-top: 60px;
 }
@@ -117,11 +122,67 @@ div.rpsimage {
 @keyframes blinker {  
   50% { opacity: 0.0; }
 }
+div.newc4board{
+  border-right: 5px solid #001d71;
+/*  height: 338px;
+  width: 364px;*/
+  text-align: center;
+  display: inline-block;
+  height: 310px;
+}
+div.newc4head {
+  width:350px;
+  border: 5px solid #001d71;
+  margin-left: 50px;
+  transform: skew(-20deg);
+  height: 20px;
+}
+div.newc4foot {
+  width:355px;
+  border-bottom: 5px solid #001d71;
+  border-right: 5px solid #001d71;
+  margin-left: 50px;
+  transform: skew(-20deg);
+  height: 25px;
+  margin-top: -30px;
+
+}
+
+div.c4newbutton {
+  width: 50px;
+  display: inline-block;
+  float:left;
+}
+
+div.newc4boardpieces {
+  border: 5px solid #001d71;
+  margin-left: 44px;
+  margin-right: 5px;
+  height: 300px;
+  width: 350px;
+}
+
+div.newc4row {
+  height: 50px;
+  max-width: 350px;
+}
+
+div.newc4cell {
+  /*display: inline-block;*/
+  max-width: 50px;
+  float: left;
+}
+
+div.newc4cell img {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+}
 
 div.c4board{
   border: 5px solid #001d71;
   height: 338px;
-  width: 366px;
+  width: 364px;
   text-align: center;
 }
 div.c4head {
@@ -133,7 +194,11 @@ div.c4head {
   width: 50px;
   padding: 0px;
   margin: 0px;
+  transform: skew(-20deg);
+  left: 15px;
+  text-align: center;
 }
+
 
 div.c4cell {
   float: left;
@@ -174,6 +239,7 @@ div.advgamecell {
   float: left;
   font-size: 2em;
   text-align: center;
+  color: white;
 }
 .adv_blank_button {
     height: 50px;
@@ -183,6 +249,9 @@ div.advgamecell {
     border: none;
     cursor:pointer;
     outline:none;
+    color:white;
+    font-size: 0.7em;
+    vertical-align: center;
 }
 
 .adv_blank_button:hover {
@@ -190,12 +259,10 @@ div.advgamecell {
 }
 
 div.advknot {
-  background-color: red;
   background-image: url(obg.png)
 }
 
 div.advcross {
-  background-color: lightblue;
   background-image: url(xbg.png)
 }
 

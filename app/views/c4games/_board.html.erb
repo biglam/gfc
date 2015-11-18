@@ -1,9 +1,10 @@
-<div class="c4board">
+<div class="c4head">
   <% 7.times do |i| %>
-  <div class="c4head">
+
   <%= radio_button_tag(:column, i) if (@game.c4board.r1.split(//)[i] == "0" && @game.winner_id == nil)%></div>
   <% end %>
 
+  <div class="c4board">
   <% 6.times do |i| %>
     <div class="c4row">
       <% @game.c4board.send("r#{i+1}").split(//).each do |cell| %>
@@ -19,4 +20,11 @@
       <% end %>
     </div>
   <% end %>
+</div>
+<!-- New CSS -->
+
+
+<div class="newc4board">
+<div class="newc4head">
+</div>
 </div>

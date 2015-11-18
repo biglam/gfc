@@ -1,0 +1,29 @@
+<div class="newc4board">
+  <div class="newc4head">
+    <% 7.times do |i| %>
+    <div class="c4newbutton">
+    <%= radio_button_tag(:column, i) if (@game.c4board.r1.split(//)[i] == "0" && @game.winner_id == nil)%>
+    </div>
+    <% end %>
+    <!-- start board -->
+  </div>
+  <div class="newc4boardpieces">
+  <% 6.times do |i| %>
+    <div class="newc4row">
+      <% @game.c4board.send("r#{i+1}").split(//).each do |cell| %>
+      <div class="newc4cell">
+      <% if cell == "0" %>
+      <%= image_tag('c4blank.png') %>
+      <% elsif cell == "1" %>
+      <%= image_tag('c4red.png') %>
+      <% elsif cell == "2" %>
+      <%= image_tag('c4blue.png') %>
+      <% end %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+  <div class="newc4foot">
+  </div>
+</div>

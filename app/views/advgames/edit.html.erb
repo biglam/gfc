@@ -1,6 +1,7 @@
 <h1>Advanced Tic Tac Toe</h1>
 <p>They said it couldn't be done...</p>
 
+<h2><%= "O " + @game.p1.email if @game.current_player == 1 %><%= "X " + @game.p2.email if @game.current_player == 2 %>'s Turn</h2>
 <div class="advmainboard">
   <% 9.times do |i| %>
   <div class='advgameboard <%= "board#{i}" %> <%= "inactiveboard" if @game.activeboard != i && @game.activeboard != 10 %> <%= "advknot" if @game.send("advboard#{i}").winner_id == 1 %> <%= "advcross" if @game.send("advboard#{i}").winner_id == 2 %>'>
@@ -12,8 +13,10 @@
         <%= form_for @game do |f| %>  
         <%= f.hidden_field :board, :value => i %>
         <%= f.hidden_field :move, :value => ind %>
-        <%= f.submit "TTT", :class => 'adv_blank_button' %>
+        <%= f.submit ".", :class => 'adv_blank_button' %>
         <% end %>
+        <% else %>
+        .
       <% end %>
       <% when 1 %>
       O

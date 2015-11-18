@@ -22,17 +22,16 @@ class AdvgamesController < ApplicationController
     # binding.pry;''
     #make move
     @game.make_move(params)
-    #check for win/draw on single-board
+    #check and set win/draw on single-board
     @game.cell_results(params)
-    #check for win/draw on big board
+    #check and set win/draw on main board
     @game.game_results(params)
-    if @game.game_won || @game.game_drawn
+    if @game.game_won || @game.game_drawn #if game is finished
       redirect_to(advgame_path(@game.id))
     else
       #continue if game not finished
       @game.set_active_board(params)
       change_player
-      #show if it is
       redirect_to(edit_advgame_path(@game.id))
     end
   end
