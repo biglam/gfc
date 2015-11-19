@@ -5,40 +5,21 @@ class Ability
     user ||= User.new
     if user.role? :admin
       can :manage, :all
-    else
-        can [:create, :read], Game
-        can :update, Game do |game|
-           game.p1_id == user.id || game.p2_id == user.id
-        end
-        # can [:update, :destroy] do User
-        #     binding.pry;''
-        # end
+  else
+    can [:create, :read], :all
+    can :update, Game do |game|
+        game.p1_id == user.id || game.p2_id == user.id
     end
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-  end
+        can [:edit, :update], Rp do |game|
+        game.p1_id == user.id || game.p2_id == user.id
+    end
+        can [:edit, :update], C4game do |game|
+        game.p1.id == user.id || game.p2.id == user.id
+    end
+        can [:edit, :update], Advgame do |game|
+        game.p1.id == user.id || game.p2.id == user.id
+    end
+end
+end
+
 end

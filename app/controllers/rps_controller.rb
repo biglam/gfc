@@ -1,4 +1,5 @@
 class RpsController < ApplicationController
+  load_and_authorize_resource
   
   def index
     @rps = Rp.all.order(updated_at: :desc)

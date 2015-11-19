@@ -1,4 +1,5 @@
 class C4gamesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @games = C4game.all.order(updated_at: :desc)

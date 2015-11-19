@@ -1,4 +1,6 @@
 class AdvgamesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @games = Advgame.all.order(updated_at: :desc)
   end
