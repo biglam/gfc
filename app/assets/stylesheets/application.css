@@ -269,3 +269,70 @@ ul.menu
 {
   float: left;
 }
+
+div.minesweeperboard {
+  height: 395px;
+  width: 408px;
+  background-color: grey;
+}
+
+div.minesweepercell {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+div.flagged {
+  background-color: blue;
+}
+
+div.bomb {
+  background-color: red;
+}
+
+div.mmrow {
+  background-color: black;
+  height: 50px;
+  width: 400px;
+
+}
+
+div.mmrowscore {
+ 
+  background-color: black;
+  height: 50px;
+  width: 800px;
+}
+
+div.mmcolour {
+  float: left;
+  height: 50px;
+  width: 100px;
+
+}
+
+div.mmred {
+  background-color: red;
+}
+div.mmgreen {
+  background-color: green;
+}
+div.mmblue {
+  background-color: blue;
+}
+div.mmyellow {
+  background-color: yellow;
+}
+div.mmpurple {
+  background-color: purple;
+}
+div.mmbrown {
+  background-color: brown;
+}
+div.mmwhite {
+  background-color: white;
+}
+div.mmgrey {
+  background-color: grey;
+}

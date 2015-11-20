@@ -1,0 +1,35 @@
+<h1>Mastermind</h1>
+
+
+<p>Boards</p>
+<% 8.times do |i| %>
+<div class="mmrowscore">
+  <% @game.send("board#{i}").split(//).each do |colour| %>
+    <div class="mmcolour <%= @game.colourclass(colour.to_i) %>">
+      <%= @game.colours[colour.to_i] %>
+    </div>
+  <% end %>
+
+  <% @game.send("board#{i}").split(//).each_with_index do |colour, y| %>
+    <% if @game.topboard.split(//)[y] == colour %>
+      <div class="mmcolour mmwhite">White</div>
+    <% elsif @game.topboard.include? colour %>
+      <div class="mmcolour mmgrey">Grey</div>
+    <% else %>
+      <div class="mmcolour">Black</div>
+    <% end %>
+
+  <% end %>
+</div>
+<br>
+<% end %>
+
+<%= form_for @game do |f| %>
+
+<%=f.select(:guess1, @game.colours.map { |value| [ value, value ] }) %>
+<%=f.select(:guess2, @game.colours.map { |value| [ value, value ] }) %>
+<%=f.select(:guess3, @game.colours.map { |value| [ value, value ] }) %>
+<%=f.select(:guess4, @game.colours.map { |value| [ value, value ] }) %>
+<%= f.submit %>
+<% end %>
+

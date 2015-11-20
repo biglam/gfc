@@ -1,0 +1,10 @@
+<h1>Minesweeper</h1>
+<p>Because I just had to have one more</p>
+
+<%= form_for @game do |f| %>
+<div class="field">
+  <%= f.label :bombs %><br>
+  <%= f.text_field :bombs %>
+</div>
+<%= f.submit %>
+<% end %>

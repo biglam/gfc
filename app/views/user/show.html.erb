@@ -18,7 +18,7 @@
 </table>
 <h2>Statistics</h2>
 <ul>
-  <li><strong>Games Played - </strong><%= (@user.games.count + @user.rp.count + @user.c4games_as_p1.count + @user.c4games_as_p2.count + @user.advgames_as_p1.count + @user.advgames_as_p2.count) %></li>
+  <li><strong>Games Played - </strong><%= (@user.games.count + @user.rp.count + @user.c4games_as_p1.count + @user.c4games_as_p2.count + @user.advgames_as_p1.count + @user.advgames_as_p2.count + @user.mmgames.count) %></li>
   <li><strong>Games Won - </strong><%= @user.wins %></li>
   <li><strong>Games Drawn - </strong><%= @user.draws %></li>
   <li><strong>Win Ratio - </strong><%= ((@user.wins.to_d / @user.games.count.to_d)*100).round(2) %></li>
@@ -104,3 +104,16 @@
   <% end %>
 </table>
 
+<h3>Mastermind</h3>
+<table>
+  <tr>
+    <th>Game number</th>
+    <th>Result</th>
+  </tr>
+  <% @user.mmgames.each do |game| %>
+  <tr>
+    <td><%= game.id %></td>
+    <td><% if game.complete %><%= "Won" if game.won %><%= "Lost" if game.won == false %><% else %>Game Incomplete <% end %></td>
+  </tr>
+  <% end %>
+</table>

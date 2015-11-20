@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  topboard: MyString
+  guesses_remaining: 1
+  board0: MyString
+
+two:
+  user_id: 1
+  topboard: MyString
+  guesses_remaining: 1
+  board0: MyString

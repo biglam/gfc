@@ -1,0 +1,17 @@
+<h1>Mastermind</h1>
+<p>in 2 hours</p>
+
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Result</th>
+  </tr>
+  <% @games.each do |game| %>
+  <tr>
+    <td><%= game.user.email %></td>
+    <td><%= "Won" if game.complete && game.won %>
+    <%= "Lost" if game.complete && (game.won == false)%>
+    <%= link_to("Play", edit_mmgame_path(game.id)) if game.complete == false%></td>
+  </tr>
+  <% end %>
+</table>

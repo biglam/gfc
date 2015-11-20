@@ -1,0 +1,17 @@
+<h1>Mastermind</h1>
+
+<% if @game.won %><h2>You Win!</h2><% end %>
+<% if @game.complete && (@game.won == false) %><h2>You Lose</h2><% end %>
+<p>Winning Line:</p>
+<%= render partial: 'winningline' %>
+<p>Boards</p>
+<% 8.times do |i| %>
+<div class="mmrow">
+  <% @game.send("board#{i}").split(//).each do |colour| %>
+    <% if colour != "0" %>
+    <div class="mmcolour <%= @game.colourclass(colour.to_i) %>">
+    </div><% end %>
+  <% end %>
+  <% end %>
+</div>
+

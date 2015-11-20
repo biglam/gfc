@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :rps
   resources :c4games
   resources :advgames
+  resources :minesweepers
+  resources :mmgames
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

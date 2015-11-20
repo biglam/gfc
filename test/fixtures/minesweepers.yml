@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  board: MyString
+  flagged: MyString
+  bombs: MyString
+  user_id: 1
+  completed: false
+  won: false
+  numbers: MyString
+
+two:
+  board: MyString
+  flagged: MyString
+  bombs: MyString
+  user_id: 1
+  completed: false
+  won: false
+  numbers: MyString

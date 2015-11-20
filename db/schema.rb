@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117171841) do
+ActiveRecord::Schema.define(version: 20151120122007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,40 @@ ActiveRecord::Schema.define(version: 20151117171841) do
   create_table "games_users", id: false, force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "user_id", null: false
+  end
+
+  create_table "minesweepers", force: :cascade do |t|
+    t.string   "board"
+    t.string   "flagged"
+    t.string   "bombs"
+    t.integer  "user_id"
+    t.boolean  "completed"
+    t.boolean  "won"
+    t.string   "numbers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mmgames", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "topboard"
+    t.integer  "guesses_remaining"
+    t.string   "board0",            default: "0000"
+    t.string   "board1",            default: "0000"
+    t.string   "board2",            default: "0000"
+    t.string   "board3",            default: "0000"
+    t.string   "board4",            default: "0000"
+    t.string   "board5",            default: "0000"
+    t.string   "board6",            default: "0000"
+    t.string   "board7",            default: "0000"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "complete",          default: false
+    t.boolean  "won",               default: false
+    t.integer  "guess1"
+    t.integer  "guess2"
+    t.integer  "guess3"
+    t.integer  "guess4"
   end
 
   create_table "rps", force: :cascade do |t|

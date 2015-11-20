@@ -1,0 +1,7 @@
+<div class="mmrow">
+<% @game.topboard.split(//).each do |colour| %>
+<div class="mmcolour <%= @game.colourclass(colour.to_i) %>">
+<%= @game.colours[colour.to_i] %>
+</div>
+<% end %>
+</div>

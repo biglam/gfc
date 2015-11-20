@@ -1,0 +1,14 @@
+<h1>Minesweeper</h1>
+<% squares = @game.board.split(//) %>
+<% binding.pry;'' %>
+<%= form_for @game do |f| %>
+<div class="minesweeperboard">
+  <% @game.numbers.split(//).each_with_index do |cell, i| %>
+  <div class="minesweepercell <%= 'flagged' if squares[i] == "F" %>"><%= check_box_tag(:flag, i) if squares[i] != "F"%><%= radio_button_tag(:clicked, i) if squares[i] == "0" %>
+<%= squares[i] %>
+  </div>
+  <% end %>
+</div>
+
+<%= f.submit %>
+<% end %>
